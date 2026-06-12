@@ -41,6 +41,19 @@ svg{
 
 <script>
 
+// BLOQUEAR CELULARES
+const esMovil =
+/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+.test(navigator.userAgent);
+
+if(esMovil){
+
+    document.body.innerHTML = "";
+
+    throw new Error("Acceso móvil bloqueado");
+
+}
+
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxHHlu-hBr8ytcu084bJ3ebxniyXoEI-vOG0wWvGGBIPmjkeX0hU6-BIbeRvIaNgAQYdg/exec";
 
@@ -130,12 +143,6 @@ actualizarColor();
 
 window.recargarEstadoLote = function(){
 
-    actualizarColor();
-
-};
-
-window.recargarEstadoLote = function(){
-
     console.log("Recargando lote");
 
     actualizarColor();
@@ -143,6 +150,7 @@ window.recargarEstadoLote = function(){
 };
 
 </script>
+
 
 </body>
 </html>
