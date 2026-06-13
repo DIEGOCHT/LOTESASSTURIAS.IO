@@ -41,6 +41,19 @@ svg{
 
 <script>
 
+// Detectar móvil
+const esMovil =
+/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i
+.test(navigator.userAgent);
+
+// Si es móvil, terminar aquí
+if(esMovil){
+
+    console.log("WebFrame deshabilitado en móvil");
+
+}
+else{
+
 const API_URL =
 "https://script.google.com/macros/s/AKfycbxHHlu-hBr8ytcu084bJ3ebxniyXoEI-vOG0wWvGGBIPmjkeX0hU6-BIbeRvIaNgAQYdg/exec";
 
@@ -50,89 +63,9 @@ const LOTE = params.get("lote");
 
 const fondo = document.getElementById("fondo");
 
-async function actualizarColor(){
-
-    try{
-
-        const response = await fetch(
-            API_URL + "?t=" + Date.now(),
-            {
-                cache: "no-store"
-            }
-        );
-
-        const datos = await response.json();
-
-        const fila = datos.find(item => {
-
-            const idLote = String(item.ID_LOTE || "")
-                .trim()
-                .replace(/\s+/g," ");
-
-            const loteBuscado = String(LOTE || "")
-                .trim()
-                .replace(/\s+/g," ");
-
-            return idLote === loteBuscado;
-
-        });
-
-        if(!fila){
-
-            console.warn(
-                "Lote no encontrado:",
-                LOTE
-            );
-
-            return;
-        }
-
-        const color =
-            String(fila.COLOR || "FFFF00")
-            .replace("#","")
-            .trim();
-
-        const opacidad =
-            String(fila.OPACIDAD || "0.30")
-            .trim();
-
-        fondo.setAttribute(
-            "fill",
-            "#" + color
-        );
-
-        fondo.setAttribute(
-            "fill-opacity",
-            opacidad
-        );
-
-        console.log(
-            "Actualizado:",
-            fila.ID_LOTE,
-            fila.ESTADO,
-            "#" + color,
-            opacidad
-        );
-
-    }
-    catch(error){
-
-        console.error(
-            "Error:",
-            error
-        );
-
-    }
-
-}
+// ... TODO tu código actual ...
 
 actualizarColor();
-
-window.recargarEstadoLote = function(){
-
-    actualizarColor();
-
-};
 
 window.recargarEstadoLote = function(){
 
@@ -142,6 +75,7 @@ window.recargarEstadoLote = function(){
 
 };
 
+}
 </script>
 
 </body>
