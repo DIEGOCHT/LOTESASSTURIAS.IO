@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html>
 <head>
 <meta charset="utf-8">
@@ -25,17 +24,15 @@ svg{
 
 <svg viewBox="0 0 100 100" preserveAspectRatio="none">
 
-```
-<rect
-    id="fondo"
-    x="0"
-    y="0"
-    width="100"
-    height="100"
-    fill="#FFFFFF"
-    fill-opacity="0">
-</rect>
-```
+    <rect
+        id="fondo"
+        x="0"
+        y="0"
+        width="100"
+        height="100"
+        fill="#FFFFFF"
+        fill-opacity="0">
+    </rect>
 
 </svg>
 
@@ -49,6 +46,11 @@ const params = new URLSearchParams(window.location.search);
 const LOTE = params.get("lote");
 
 const fondo = document.getElementById("fondo");
+
+const ES_MOVIL =
+/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(
+    navigator.userAgent
+);
 
 async function actualizarColor(){
 
@@ -126,24 +128,32 @@ async function actualizarColor(){
 
 }
 
-actualizarColor();
-
-window.recargarEstadoLote = function(){
-
-    actualizarColor();
-
-};
-
-window.recargarEstadoLote = function(){
-
-    console.log("Recargando lote");
+// SOLO COMPUTADORA
+if(!ES_MOVIL){
 
     actualizarColor();
 
-};
+    window.recargarEstadoLote = function(){
+
+        console.log("Recargando lote");
+
+        actualizarColor();
+
+    };
+
+}
+// SOLO CELULAR
+else{
+
+    console.log("WebFrame deshabilitado en móvil");
+
+    fondo.setAttribute("fill-opacity","0");
+
+    window.recargarEstadoLote = function(){};
+
+}
 
 </script>
 
 </body>
 </html>
-
