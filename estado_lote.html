@@ -128,19 +128,10 @@ async function actualizarColor(){
 
 actualizarColor();
 
-window.recargarEstadoLote = function(){
-
-    actualizarColor();
-
-};
-
-window.recargarEstadoLote = function(){
-
-    console.log("Recargando lote");
-
-    actualizarColor();
-
-};
+setInterval(
+    actualizarColor,
+    5000
+);
 
 </script>
 
