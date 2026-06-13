@@ -25,14 +25,17 @@ svg{
 
 <svg viewBox="0 0 100 100" preserveAspectRatio="none">
 
+```
 <rect
- id="fondo"
- x="0"
- y="0"
- width="100"
- height="100"
- fill="#FFFFFF"
- fill-opacity="0"> </rect>
+    id="fondo"
+    x="0"
+    y="0"
+    width="100"
+    height="100"
+    fill="#FFFFFF"
+    fill-opacity="0">
+</rect>
+```
 
 </svg>
 
@@ -75,6 +78,12 @@ async function actualizarColor(){
         });
 
         if(!fila){
+
+            console.warn(
+                "Lote no encontrado:",
+                LOTE
+            );
+
             return;
         }
 
@@ -97,10 +106,21 @@ async function actualizarColor(){
             opacidad
         );
 
+        console.log(
+            "Actualizado:",
+            fila.ID_LOTE,
+            fila.ESTADO,
+            "#" + color,
+            opacidad
+        );
+
     }
     catch(error){
 
-        console.error(error);
+        console.error(
+            "Error:",
+            error
+        );
 
     }
 
@@ -114,7 +134,16 @@ window.recargarEstadoLote = function(){
 
 };
 
+window.recargarEstadoLote = function(){
+
+    console.log("Recargando lote");
+
+    actualizarColor();
+
+};
+
 </script>
 
 </body>
 </html>
+
